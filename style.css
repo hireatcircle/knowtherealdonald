@@ -1,0 +1,297 @@
+body {
+    margin: 0; /* Remove default margins */
+    padding: 0; /* Remove padding from body */
+    font-family: Arial, sans-serif; /* Optional: font change for readability */
+}
+
+/* Header Styling */
+.header {
+    background-color: #b22222; /* Dark Red background */
+    color: white;
+    padding: 20px 0; /* Adjusted padding to reduce space */
+    text-align: center;
+    border-bottom: 5px solid #ff0000; /* Red border at the bottom */
+    margin: 0; /* Ensure no margin for the header */
+    position: relative; /* Keeps it in the document flow */
+    z-index: 1; /* Ensure it's above other content if needed */
+}
+
+/* Navbar Styling (Make it sticky) */
+.navbar {
+    position: sticky; /* Makes the navbar sticky */
+    top: 0; /* Keeps the navbar at the top when scrolling */
+    z-index: 2; /* Ensures navbar stays above header */
+    background-color: #343a40; /* Dark background for the navbar */
+    padding: 0; /* Remove extra padding */
+    margin: 0; /* Remove any margin */
+    width: 100%; /* Ensure full width */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional: Shadow for better visibility */
+}
+
+.navbar-collapse {
+  display: flex;
+  justify-content: space-between; /* Aligns navbar content */
+  align-items: center; /* Vertically align */
+  width: 100%;
+}
+
+/* Form inside navbar */
+.form-inline {
+  width: 50%; /* Adjust this width to suit your needs */
+  max-width: 600px; /* Prevents the search bar from growing too wide */
+  margin: 0 auto; /* Centers the form */
+}
+
+.form-control {
+  max-width: 100%; /* Adjust width of search bar */
+}
+
+.navbar-nav {
+  display: flex;
+}
+
+.nav-item {
+  margin-right: 15px; /* Adjust space between nav items */
+}
+
+/* Footer Styling */
+page-footer {
+    background-color: #b22222; /* Dark Red background */
+    color: white;
+    text-align: center;
+    padding: 10px;
+    width: 100%;
+    margin: 0; /* Remove any extra margin around footer */
+    position: relative;
+    bottom: 0;
+}
+
+/* Container for Content */
+.container {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Section Titles */
+.section-title {
+    margin-top: 50px;
+}
+
+/* Content Section */
+.content {
+    padding-bottom: 80px; /* Space at the bottom for footer */
+}
+
+/* Overall styling for the quotes section */
+#quotes {
+  background-color: #f8f9fa; /* Light background for readability */
+  padding: 40px 0;
+  margin-top: 30px;
+}
+
+#quotes h2 {
+  font-size: 2.5em;
+  color: #e74c3c; /* Red color for the heading */
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+.quote-card {
+  background-color: #ffffff; /* White background for quotes */
+  border-left: 5px solid #e74c3c; /* Red left border to match theme */
+  padding: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.quote-card:hover {
+  transform: scale(1.2); /* Slight zoom effect on hover */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+blockquote {
+  font-size: 1.3em;
+  font-style: italic;
+  line-height: 1.6;
+  color: #676464;
+  margin-bottom: 15px;
+}
+
+.quote-footer {
+  font-size: 1em;
+  text-align: right;
+  font-weight: bold;
+  margin-top: 10px;
+  color: #070707;
+  font-style: normal; /* Normal font style for consistency */
+}
+
+cite {
+  font-style: normal;
+  color: #535151;
+}
+
+.quote-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 equal-width columns */
+  gap: 30px; /* Space between cards */
+  padding: 20px; /* Space around the grid */
+}
+
+
+/* Responsive Layout for smaller screens */
+@media (max-width: 600px) {
+.quote-grid {
+  grid-template-columns: 1fr; /* Single column */
+}
+}
+
+@media (max-width: 900px) {
+.quote-grid {
+  grid-template-columns: repeat(2, 1fr); /* 2 columns */
+}
+}
+
+/* For larger screens (desktops), 3 columns (already set) */
+@media (min-width: 900px) {
+.quote-grid {
+  grid-template-columns: repeat(3, 1fr); /* 3 equal-width columns */
+}
+}
+
+/* Biography Section Styles */
+#biography {
+background-color: #f4f4f4;
+padding-top: 50px;
+padding-bottom: 50px;
+}
+
+#biography .text-center h2 {
+font-size: 2.5rem;
+color: #e74c3c; /* Red color */
+}
+
+#biography .text-center p {
+font-size: 1.1rem;
+color: #777;
+}
+
+#biography .card {
+background-color: #fff;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+transition: box-shadow 0.3s ease;
+border-radius: 10px;
+}
+
+#biography .card:hover {
+box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+#biography .card p {
+font-size: 1.1rem;
+color: #333;
+line-height: 1.6;
+}
+
+#biography img {
+transition: transform 0.3s ease;
+}
+
+#biography img:hover {
+transform: scale(1.05); /* Slight zoom effect */
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+#biography .row {
+  text-align: center;
+}
+
+#biography .col-md-4 {
+  margin-bottom: 20px;
+}
+
+#biography .col-md-8 {
+  text-align: left;
+}
+}
+
+/* Horizontal Timeline with More Space for Each Item */
+.timeline {
+display: flex;
+overflow-x: scroll;
+margin: 30px 0;
+padding: 20px 0;
+align-items: flex-start;
+scroll-behavior: smooth;
+width: 100%; /* Ensures the timeline takes full page width */
+}
+
+.timeline-item {
+display: flex;
+flex-direction: column;
+align-items: center;
+margin-right: 40px; /* Increase space between timeline items */
+flex-grow: 1; /* Allow items to grow and fill available space */
+text-align: center;
+min-width: 220px; /* Increased minimum width for readability */
+padding: 20px; /* Add padding inside the timeline item */
+background-color: #f9f9f9; /* Light background for readability */
+border-radius: 20%; /* Slight border radius for a softer look */
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+}
+
+.timeline-item:last-child {
+margin-right: 0;
+}
+
+.timeline-date {
+font-size: 1.4rem; /* Slightly bigger date for prominence */
+font-weight: bold;
+color: #333;
+margin-bottom: 10px;
+}
+
+.timeline-content h3 {
+font-size: 1.6rem; /* Increase font size for the heading */
+color: #ff0000;
+margin-bottom: 10px; /* More spacing between the title and text */
+}
+
+.timeline-content p {
+font-size: 1.1rem; /* Slightly larger font size for text */
+color: #555;
+margin: 0;
+line-height: 1.6; /* Increased line height for better readability */
+}
+
+.timeline-item::before {
+content: "";
+position: absolute;
+top: -10px;
+width: 12px;
+height: 12px;
+background-color: #ff0000;
+border-radius: 50%;
+}
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+.timeline-item {
+  min-width: 250px; /* Slightly bigger min-width for readability on smaller screens */
+}
+}
+
+@media (max-width: 576px) {
+.timeline-item {
+  min-width: 100%; /* Allow items to stack vertically on smaller screens */
+  margin-right: 0;
+}
+}
+
+.timeline-item:hover {
+transform: scale(1);
+transition: transform 0.3s ease;
+}
