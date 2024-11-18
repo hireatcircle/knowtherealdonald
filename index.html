@@ -1,29 +1,543 @@
+<router-outlet></router-outlet>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <div>
-    <h1> Comming Soon..... </h1>
-    </div>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Donald Trump</title>
+    <meta name="description" content="Facts about President Donald Trump, including his biography, policies, and key moments during his presidency.">
+    <title>Know The Real Donald Trump</title>
+    <!-- Bootstrap CSS for responsive design -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS (optional for styling) -->
     <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f3f4f6;
-        }
-        img {
-            max-width: 90%;
-            max-height: 90%;
-        }
-    </style>
+      body {
+          margin: 0; /* Remove default margins */
+          padding: 0; /* Remove padding from body */
+          font-family: Arial, sans-serif; /* Optional: font change for readability */
+      }
+  
+      /* Header Styling */
+      .header {
+          background-color: #b22222; /* Dark Red background */
+          color: white;
+          padding: 20px 0; /* Adjusted padding to reduce space */
+          text-align: center;
+          border-bottom: 5px solid #ff0000; /* Red border at the bottom */
+          margin: 0; /* Ensure no margin for the header */
+          position: relative; /* Keeps it in the document flow */
+          z-index: 1; /* Ensure it's above other content if needed */
+      }
+  
+      /* Navbar Styling (Make it sticky) */
+      .navbar {
+          position: sticky; /* Makes the navbar sticky */
+          top: 0; /* Keeps the navbar at the top when scrolling */
+          z-index: 2; /* Ensures navbar stays above header */
+          background-color: #343a40; /* Dark background for the navbar */
+          padding: 0; /* Remove extra padding */
+          margin: 0; /* Remove any margin */
+          width: 100%; /* Ensure full width */
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional: Shadow for better visibility */
+      }
+
+      .navbar-collapse {
+        display: flex;
+        justify-content: space-between; /* Aligns navbar content */
+        align-items: center; /* Vertically align */
+        width: 100%;
+      }
+
+      /* Form inside navbar */
+      .form-inline {
+        width: 50%; /* Adjust this width to suit your needs */
+        max-width: 600px; /* Prevents the search bar from growing too wide */
+        margin: 0 auto; /* Centers the form */
+      }
+
+      .form-control {
+        max-width: 100%; /* Adjust width of search bar */
+      }
+
+      .navbar-nav {
+        display: flex;
+      }
+
+      .nav-item {
+        margin-right: 15px; /* Adjust space between nav items */
+      }
+  
+      /* Footer Styling */
+      page-footer {
+          background-color: #b22222; /* Dark Red background */
+          color: white;
+          text-align: center;
+          padding: 10px;
+          width: 100%;
+          margin: 0; /* Remove any extra margin around footer */
+          position: relative;
+          bottom: 0;
+      }
+  
+      /* Container for Content */
+      .container {
+          padding-left: 15px;
+          padding-right: 15px;
+      }
+  
+      /* Section Titles */
+      .section-title {
+          margin-top: 50px;
+      }
+  
+      /* Content Section */
+      .content {
+          padding-bottom: 80px; /* Space at the bottom for footer */
+      }
+
+      /* Overall styling for the quotes section */
+      #quotes {
+        background-color: #f8f9fa; /* Light background for readability */
+        padding: 40px 0;
+        margin-top: 30px;
+      }
+
+      #quotes h2 {
+        font-size: 2.5em;
+        color: #e74c3c; /* Red color for the heading */
+        font-weight: bold;
+        margin-bottom: 40px;
+      }
+
+      .quote-card {
+        background-color: #ffffff; /* White background for quotes */
+        border-left: 5px solid #e74c3c; /* Red left border to match theme */
+        padding: 10px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        transition: all 0.3s ease;
+      }
+
+      .quote-card:hover {
+        transform: scale(1.2); /* Slight zoom effect on hover */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+      }
+
+      blockquote {
+        font-size: 1.3em;
+        font-style: italic;
+        line-height: 1.6;
+        color: #676464;
+        margin-bottom: 15px;
+      }
+
+      .quote-footer {
+        font-size: 1em;
+        text-align: right;
+        font-weight: bold;
+        margin-top: 10px;
+        color: #070707;
+        font-style: normal; /* Normal font style for consistency */
+      }
+
+      cite {
+        font-style: normal;
+        color: #535151;
+      }
+
+      .quote-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); /* 3 equal-width columns */
+        gap: 30px; /* Space between cards */
+        padding: 20px; /* Space around the grid */
+     }
+
+
+      /* Responsive Layout for smaller screens */
+    @media (max-width: 600px) {
+      .quote-grid {
+        grid-template-columns: 1fr; /* Single column */
+      }
+    }
+
+    @media (max-width: 900px) {
+      .quote-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns */
+      }
+    }
+
+    /* For larger screens (desktops), 3 columns (already set) */
+    @media (min-width: 900px) {
+      .quote-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 equal-width columns */
+      }
+    }
+
+    /* Biography Section Styles */
+    #biography {
+      background-color: #f4f4f4;
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
+
+    #biography .text-center h2 {
+      font-size: 2.5rem;
+      color: #e74c3c; /* Red color */
+    }
+
+    #biography .text-center p {
+      font-size: 1.1rem;
+      color: #777;
+    }
+
+    #biography .card {
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s ease;
+      border-radius: 10px;
+    }
+
+    #biography .card:hover {
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    #biography .card p {
+      font-size: 1.1rem;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    #biography img {
+      transition: transform 0.3s ease;
+    }
+
+    #biography img:hover {
+      transform: scale(1.05); /* Slight zoom effect */
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 767px) {
+      #biography .row {
+        text-align: center;
+      }
+
+      #biography .col-md-4 {
+        margin-bottom: 20px;
+      }
+
+      #biography .col-md-8 {
+        text-align: left;
+      }
+    }
+
+    /* Horizontal Timeline with More Space for Each Item */
+    .timeline {
+      display: flex;
+      overflow-x: scroll;
+      margin: 30px 0;
+      padding: 20px 0;
+      align-items: flex-start;
+      scroll-behavior: smooth;
+      width: 100%; /* Ensures the timeline takes full page width */
+    }
+
+    .timeline-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-right: 40px; /* Increase space between timeline items */
+      flex-grow: 1; /* Allow items to grow and fill available space */
+      text-align: center;
+      min-width: 220px; /* Increased minimum width for readability */
+      padding: 20px; /* Add padding inside the timeline item */
+      background-color: #f9f9f9; /* Light background for readability */
+      border-radius: 20%; /* Slight border radius for a softer look */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+    }
+
+    .timeline-item:last-child {
+      margin-right: 0;
+    }
+
+    .timeline-date {
+      font-size: 1.4rem; /* Slightly bigger date for prominence */
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 10px;
+    }
+
+    .timeline-content h3 {
+      font-size: 1.6rem; /* Increase font size for the heading */
+      color: #ff0000;
+      margin-bottom: 10px; /* More spacing between the title and text */
+    }
+
+    .timeline-content p {
+      font-size: 1.1rem; /* Slightly larger font size for text */
+      color: #555;
+      margin: 0;
+      line-height: 1.6; /* Increased line height for better readability */
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      width: 12px;
+      height: 12px;
+      background-color: #ff0000;
+      border-radius: 50%;
+    }
+
+    /* Adjustments for smaller screens */
+    @media (max-width: 768px) {
+      .timeline-item {
+        min-width: 250px; /* Slightly bigger min-width for readability on smaller screens */
+      }
+    }
+
+    @media (max-width: 576px) {
+      .timeline-item {
+        min-width: 100%; /* Allow items to stack vertically on smaller screens */
+        margin-right: 0;
+      }
+    }
+
+    .timeline-item:hover {
+      transform: scale(1);
+      transition: transform 0.3s ease;
+    }
+  </style>
+  
 </head>
+
 <body>
-    <img src="Results.png" alt="Displayed Image">
+
+<!-- Navigation Bar -->
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <a class="navbar-brand" href="#">Donald Trump</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse w-100" id="navbarNav">
+    <form class="form-inline mx-auto w-50">
+      <input class="form-control w-100" type="search" placeholder="Search" aria-label="Search" id="search">
+    </form>
+    
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#biography">Biography</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#policies">Policies</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#controversies">Controversies</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#quotes">Quotes</a>
+      </li>
+    </ul>
+  </div>
+</nav> -->
+
+
+    <!-- Header Section -->
+    <div class="header">
+      <!-- <img src="../assets/trump_header_image.jpg" alt="Donald Trump" 
+         style="width: 250px; height: auto; border-radius: 50%; margin-bottom: 20px;"> -->
+        <h1>Know The Real Donald Trump</h1>
+        <p>A glimpse into the life of the 45th & 47th President of the United States</p>
+    </div>
+
+    <!-- Biography Header -->
+    <section id="biography" class="py-5" style="background-color: #f4f4f4;">
+      <div class="container">
+    
+        <!-- Biography Content -->
+        <div class="row align-items-center">
+          <!-- Left Column for Image -->
+          <div class="col-md-4 text-center mb-4">
+            <img src="../assets/trump_image.png" alt="Donald Trump" class="img-fluid rounded-circle shadow-lg" style="max-width: 100%; height: auto;">
+          </div>
+    
+          <!-- Right Column for Bio -->
+          <div class="col-md-8">
+            <div class="card shadow-sm border-light rounded p-4">
+              <p class="lead">Donald John Trump was born on June 14, 1946, in Queens, New York. He is a businessman, television personality, and the 45th President of the United States. Trump is known for his outspoken style, his business acumen, and his successful, albeit controversial, presidency.</p>
+              <p>Trump's early career began in the family business, the Trump Organization, where he built a portfolio of real estate holdings. He expanded the business significantly, taking it to new heights and becoming one of the most well-known figures in American business.</p>
+              <p>In 2016, Trump ran as the Republican candidate for President of the United States and won against Democratic nominee Hillary Clinton. His presidency focused on issues like immigration reform, tax cuts, deregulation, and a "America First" foreign policy.</p>
+              <p>In the 2020 election, Trump was defeated by Joe Biden, but he continued to exert significant influence in the political landscape. As of now, he is preparing for his potential return in the 2024 elections as a candidate for the 47th President of the United States.</p>
+              <p>Trump's legacy is defined by his unorthodox approach to politics, his polarizing public persona, and his continued involvement in the political sphere.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="timeline" class="py-5 bg-light">
+      <div class="container-fluid">
+        <h2 class="text-center mb-4">Donald Trump's Life and Career Timeline</h2>
+        <div class="timeline">
+          <!-- Event 1 -->
+          <div class="timeline-item">
+            <div class="timeline-date">1946</div>
+            <div class="timeline-content">
+              <h3>Born in Queens, New York</h3>
+              <p>Donald John Trump was born on June 14, 1946, in Queens, New York, to Fred and Mary Trump.</p>
+            </div>
+          </div>
+    
+          <!-- Event 2 -->
+          <div class="timeline-item">
+            <div class="timeline-date">1971</div>
+            <div class="timeline-content">
+              <h3>Becomes President of Trump Organization</h3>
+              <p>Donald Trump took over his father’s real estate and construction business, renaming it the Trump Organization. He expanded its scope into Manhattan.</p>
+            </div>
+          </div>
+    
+          <!-- Event 3 -->
+          <div class="timeline-item">
+            <div class="timeline-date">1980s</div>
+            <div class="timeline-content">
+              <h3>Building an Empire</h3>
+              <p>During the 1980s, Donald Trump built several iconic properties, including Trump Tower in Manhattan and other notable real estate developments, solidifying his name in the business world.</p>
+            </div>
+          </div>
+    
+          <!-- Event 4 -->
+          <div class="timeline-item">
+            <div class="timeline-date">2004</div>
+            <div class="timeline-content">
+              <h3>The Apprentice Premieres</h3>
+              <p>Trump became a television personality, hosting the reality TV show <em>The Apprentice</em>. His catchphrase "You're fired!" became widely recognized.</p>
+            </div>
+          </div>
+    
+          <!-- Event 5 -->
+          <div class="timeline-item">
+            <div class="timeline-date">2015</div>
+            <div class="timeline-content">
+              <h3>Announces Presidential Candidacy</h3>
+              <p>On June 16, 2015, Donald Trump announced his candidacy for the President of the United States as a Republican candidate, marking the beginning of his political career.</p>
+            </div>
+          </div>
+    
+          <!-- Event 6 -->
+          <div class="timeline-item">
+            <div class="timeline-date">2016</div>
+            <div class="timeline-content">
+              <h3>Wins the 2016 Presidential Election</h3>
+              <p>Donald Trump won the U.S. presidential election, defeating Democratic nominee Hillary Clinton. He became the 45th president of the United States.</p>
+            </div>
+          </div>
+    
+          <!-- Event 7 -->
+          <div class="timeline-item">
+            <div class="timeline-date">2017</div>
+            <div class="timeline-content">
+              <h3>Inauguration as 45th President</h3>
+              <p>Trump was inaugurated as the 45th president of the United States on January 20, 2017. His presidency began with a focus on economic policies, immigration reform, and tax cuts.</p>
+            </div>
+          </div>
+    
+          <!-- Event 8 -->
+          <div class="timeline-item">
+            <div class="timeline-date">2020</div>
+            <div class="timeline-content">
+              <h3>COVID-19 Pandemic Response</h3>
+              <p>During his presidency, Trump oversaw the U.S. response to the COVID-19 pandemic, which included major economic relief packages and controversial handling of public health advice.</p>
+            </div>
+          </div>
+    
+          <!-- Event 9 -->
+          <div class="timeline-item">
+            <div class="timeline-date">2020</div>
+            <div class="timeline-content">
+              <h3>2020 Presidential Election</h3>
+              <p>Donald Trump ran for re-election in 2020 but lost to Joe Biden in a closely contested race. He contested the results, claiming voter fraud, though no substantial evidence was found.</p>
+            </div>
+          </div>
+    
+          <!-- Event 10 -->
+          <div class="timeline-item">
+            <div class="timeline-date">2024</div>
+            <div class="timeline-content">
+              <h3>Elected 47th President of the United States</h3>
+              <p>Donald Trump wins the election in 2024 and is set to serve as the 47th president of the United States, marking a historic return to office after his first term from 2017 to 2021.</p>
+            </div>
+          </div>
+    
+          <!-- Event 11 -->
+          <div class="timeline-item">
+            <div class="timeline-date">2024</div>
+            <div class="timeline-content">
+              <h3>Second Presidential Run</h3>
+              <p>After losing the 2020 election, Donald Trump announced his second bid for the presidency, aiming to return to power and continue his political vision for the country.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+
+    <!-- Quotes Section -->
+    <section id="quotes" class="container py-5">
+      <h2 class="text-center mb-4">Notable Quotes</h2>
+      
+      <div class="quote-grid">
+        <div class="quote-card">
+          <blockquote>
+            "What separates the winners from the losers is how a person reacts to each new twist of fate."
+            <footer class="quote-footer">- Donald Trump, <cite>The Art of the Deal</cite></footer>
+          </blockquote>
+        </div>
+      
+        <div class="quote-card">
+          <blockquote>
+            "I’ve had a lot of success. I’ve had a lot of failures, but it’s not about the failures. It’s how you come back from them."
+            <footer class="quote-footer">- Donald Trump, <cite>The Art of the Deal</cite></footer>
+          </blockquote>
+        </div>
+      
+        <div class="quote-card">
+          <blockquote>
+            "Make America Great Again."
+            <footer class="quote-footer">- Donald Trump, <cite>2016 Presidential Campaign Slogan</cite></footer>
+          </blockquote>
+        </div>
+
+        <div class="quote-card">
+          <blockquote>
+            "Sometimes by losing a battle, you find a new way to win the war."
+            <footer class="quote-footer">- Donald Trump, <cite>Art of the Deal</cite></footer>
+          </blockquote>
+        </div>
+
+        <div class="quote-card">
+          <blockquote>
+            "I don’t like losers."
+            <footer class="quote-footer">- Donald Trump, <cite>The Apprentice</cite></footer>
+          </blockquote>
+        </div>
+      </div>
+    
+      <!-- More quotes can go here -->
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="page-footer bg-dark text-white text-center py-3">
+        <p>&copy; 2024 Know The Real Donald Trump | All rights reserved</p>
+    </footer>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
+
 </html>
